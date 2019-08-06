@@ -1,0 +1,2 @@
+--require node_modules/@babel/register
+--require test/jsDom-setup.js
