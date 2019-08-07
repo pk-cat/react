@@ -1,6 +1,4 @@
 import React from "react";
-// component
-import Hero from "./hero/hero";
 // css
 import "./App.less";
 // methods
@@ -12,6 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // hero's profile
       heroArr: [
         {
           backgroundImg: require("../herosImg/kp1.jpg"),
@@ -90,15 +89,20 @@ class App extends React.Component {
   }
   // collect the hero
   handleCollect(id) {
+    // Assigning a value to a variable 
     let object = this.state.heroArr;
+    // Traversing the array
     for (const item of object) {
+      // Modifying variables
       item.collect = item.heroId === id ? !item.collect : item.collect;
     }
+    // use the setState method
     this.setState({ heroArr: object });
   }
   render() {
     return (
       <div className="App">
+        {/* header */}
         <header>
           <nav>
             <Link to="/">
@@ -107,13 +111,14 @@ class App extends React.Component {
             <Link to="/">首页</Link>
             {this.state.heroArr.map(item => {
               return (
-                <Link to={`/hero${item.heroId}`} key={item.heroId}>
+                <Link to={`/hero/${item.heroId}`} key={item.heroId}>
                   {item.chineseName}
                 </Link>
               );
             })}
           </nav>
         </header>
+        {/* section */}
         <div className="charactor-bg">
           <div className="charactor-out">
             {this.state.heroArr.map(item => {
@@ -134,7 +139,7 @@ class App extends React.Component {
                       <span>{item.englishName}</span>
                     </li>
                     <li>
-                      <Link to={`/hero${item.heroId}`} className="toArchives">
+                      <Link to={`/hero/${item.heroId}`} className="toArchives">
                         <span>档案</span>
                       </Link>
                     </li>
@@ -153,6 +158,7 @@ class App extends React.Component {
             })}
           </div>
         </div>
+        {/* footer */}
         <footer>
           <p className="footerDiv">漫威粉丝网站由时光网呈现</p>
           <p>

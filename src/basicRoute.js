@@ -7,7 +7,7 @@ export default class BasicRoute extends React.Component {
     return (
       <Router>
         <Route exact path="/" component={App} />
-        <Route exact path="/hero:id" component={Hero} />
+        <Route exact path="/hero/:id" component={Hero} />
       </Router>
     );
   }
