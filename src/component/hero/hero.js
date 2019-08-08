@@ -97,7 +97,7 @@ class Hero extends React.Component {
   }
   render() {
     return (
-      <div className="test">
+      <div>
         {/* back button */}
         <div className="back">
           <button onClick={this.handleBack}>返回</button>

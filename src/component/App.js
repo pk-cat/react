@@ -101,7 +101,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="App">
+      <div>
         {/* header */}
         <header>
           <nav>
@@ -130,7 +130,7 @@ class App extends React.Component {
                     background: `url(${item.backgroundImg}) no-repeat center`
                   }}
                 >
-                  <div />
+                  <div></div>
                   <ul>
                     <li className="chineseName">
                       <span>{item.chineseName}</span>
