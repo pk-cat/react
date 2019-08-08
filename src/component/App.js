@@ -1,10 +1,10 @@
 import React from "react";
 // css
-import "./App.less";
+// import "./App.less";
 // methods
 import { changeTime } from "./common";
 // router
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class App extends React.Component {
       // hero's profile
       heroArr: [
         {
-          backgroundImg: require("../herosImg/kp1.jpg"),
+          // backgroundImg: require("../herosImg/kp1.jpg"),
           chineseName: "蜘蛛侠",
           englishName: "SPISER-MAN",
           heroId: 0,
@@ -21,7 +21,7 @@ class App extends React.Component {
           collect: true
         },
         {
-          backgroundImg: require("../herosImg/kp2.jpg"),
+          // backgroundImg: require("../herosImg/kp2.jpg"),
           chineseName: "钢铁侠",
           englishName: "IRON-MAN",
           heroId: 1,
@@ -29,7 +29,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          backgroundImg: require("../herosImg/kp3.jpg"),
+          // backgroundImg: require("../herosImg/kp3.jpg"),
           chineseName: "绿巨人",
           englishName: "HULK",
           heroId: 2,
@@ -37,7 +37,7 @@ class App extends React.Component {
           collect: true
         },
         {
-          backgroundImg: require("../herosImg/kp11.jpg"),
+          // backgroundImg: require("../herosImg/kp11.jpg"),
           chineseName: "红骷髅",
           englishName: "RED-SKULL",
           heroId: 3,
@@ -45,7 +45,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          backgroundImg: require("../herosImg/kp12.jpg"),
+          // backgroundImg: require("../herosImg/kp12.jpg"),
           chineseName: "灭霸",
           englishName: "THANOS",
           heroId: 4,
@@ -53,7 +53,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          backgroundImg: require("../herosImg/kp13.jpg"),
+          // backgroundImg: require("../herosImg/kp13.jpg"),
           chineseName: "万磁王",
           englishName: "MAGNETO",
           heroId: 5,
@@ -61,7 +61,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          backgroundImg: require("../herosImg/kp21.jpg"),
+          // backgroundImg: require("../herosImg/kp21.jpg"),
           chineseName: "满大人",
           englishName: "MANDARIN",
           heroId: 6,
@@ -69,7 +69,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          backgroundImg: require("../herosImg/kp22.jpg"),
+          // backgroundImg: require("../herosImg/kp22.jpg"),
           chineseName: "猎鹰",
           englishName: "FALCON",
           heroId: 7,
@@ -77,7 +77,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          backgroundImg: require("../herosImg/kp23.jpg"),
+          // backgroundImg: require("../herosImg/kp23.jpg"),
           chineseName: "X-教授",
           englishName: "PROFESSOR-X",
           heroId: 8,
@@ -89,7 +89,7 @@ class App extends React.Component {
   }
   // collect the hero
   handleCollect(id) {
-    // Assigning a value to a variable 
+    // Assigning a value to a variable
     let object = this.state.heroArr;
     // Traversing the array
     for (const item of object) {
@@ -101,12 +101,15 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Router>
+        <button className="colBtns" onClick={this.handleCollect.bind(this, 0)}>
+          "收藏"
+        </button>
         {/* header */}
         <header>
           <nav>
             <Link to="/">
-              <img src={require("../herosImg/logo.jpg")} alt="MARVEL" />
+              {/* <img src={require("../herosImg/logo.jpg")} alt="MARVEL" /> */}
             </Link>
             <Link to="/">首页</Link>
             {this.state.heroArr.map(item => {
@@ -118,6 +121,7 @@ class App extends React.Component {
             })}
           </nav>
         </header>
+
         {/* section */}
         <div className="charactor-bg">
           <div className="charactor-out">
@@ -130,7 +134,7 @@ class App extends React.Component {
                     background: `url(${item.backgroundImg}) no-repeat center`
                   }}
                 >
-                  <div></div>
+                  <div />
                   <ul>
                     <li className="chineseName">
                       <span>{item.chineseName}</span>
@@ -168,7 +172,7 @@ class App extends React.Component {
             网络视听许可证0108265号北京市公安局朝阳分局备案编号:1101050744
           </p>
         </footer>
-      </div>
+      </Router>
     );
   }
 }
