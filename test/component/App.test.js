@@ -3,7 +3,7 @@ import React from "react";
 // expect
 import { expect } from "chai";
 // component
-import App from "../../src/component/App.js";
+import App from "../../src/component/App/App.js";
 // enzyme
 import enzyme from "../enzyme-setup";
 // import shallow/mount from enzyme
@@ -64,11 +64,11 @@ describe("render test", function() {
 
   // // 4.'nav' has 11 sub-elements.
   // it("4.'nav' has 11 sub-elements-a", function() {
-  //   expect(
-  //     parents
-  //       .first()
-  //       .children()
-  //       .children()
+  // expect(
+  //   parents
+  //     .first()
+  //     .children()
+  //     .children()
   //   ).to.have.lengthOf(11);
   //   expect(
   //     parents
@@ -78,16 +78,18 @@ describe("render test", function() {
   //   ).to.have.lengthOf(11);
   // });
 
-  // 5. section test
-  it("5.section test", function() {
+  // // 5. button test---just one button
+  // it("5. button test", function() {
+  //   expect(wrapperApp.state("num")).to.equal(0);
+  //   console.log(wrapperApp.state("num"));
+  //   wrapperApp.find(".colBtns").simulate("click");
+  //   expect(wrapperApp.state("num")).to.equal(1);
+  //   console.log(wrapperApp.state("num"));
+  // });
+  // 6. button test ----more than one button
+  it("6. button test", function() {
+    expect(wrapperApp.state('heroArr'))
 
-    let object = wrapperApp
-      .find(".colBtns").simulate('click');
-    console.log(object)
-    // object.map((e, index) => {
-    //   // console.log(e, index);
-    //   expect(index.name).to.equal("button");
-    // });
   });
 });
 

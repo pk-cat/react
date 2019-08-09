@@ -51,7 +51,6 @@ class Hero extends React.Component {
         }
       }
     };
-    this.handleBack = this.handleBack.bind(this);
   }
   // cycleLife function
   componentDidMount() {
@@ -90,18 +89,9 @@ class Hero extends React.Component {
         console.log(error);
       });
   }
-  // back to the index.html
-  handleBack() {
-    // use push method
-    this.props.history.push("/")
-  }
   render() {
     return (
       <div>
-        {/* back button */}
-        <div className="back">
-          <button onClick={this.handleBack}>返回</button>
-        </div>
         {/* banner */}
         <div
           className="bannerAndIconBg"

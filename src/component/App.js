@@ -1,19 +1,22 @@
 import React from "react";
 // css
-// import "./App.less";
-// methods
-import { changeTime } from "./common";
+import "./App.less";
+
 // router
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import HeroList from "./heroList/heroList";
+// component
+import Hero from "./hero/hero.js";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      num: 0,
       // hero's profile
       heroArr: [
         {
-          // backgroundImg: require("../herosImg/kp1.jpg"),
+          backgroundImg: require("../herosImg/kp1.jpg"),
           chineseName: "蜘蛛侠",
           englishName: "SPISER-MAN",
           heroId: 0,
@@ -21,7 +24,7 @@ class App extends React.Component {
           collect: true
         },
         {
-          // backgroundImg: require("../herosImg/kp2.jpg"),
+          backgroundImg: require("../herosImg/kp2.jpg"),
           chineseName: "钢铁侠",
           englishName: "IRON-MAN",
           heroId: 1,
@@ -29,7 +32,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          // backgroundImg: require("../herosImg/kp3.jpg"),
+          backgroundImg: require("../herosImg/kp3.jpg"),
           chineseName: "绿巨人",
           englishName: "HULK",
           heroId: 2,
@@ -37,7 +40,7 @@ class App extends React.Component {
           collect: true
         },
         {
-          // backgroundImg: require("../herosImg/kp11.jpg"),
+          backgroundImg: require("../herosImg/kp11.jpg"),
           chineseName: "红骷髅",
           englishName: "RED-SKULL",
           heroId: 3,
@@ -45,7 +48,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          // backgroundImg: require("../herosImg/kp12.jpg"),
+          backgroundImg: require("../herosImg/kp12.jpg"),
           chineseName: "灭霸",
           englishName: "THANOS",
           heroId: 4,
@@ -53,7 +56,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          // backgroundImg: require("../herosImg/kp13.jpg"),
+          backgroundImg: require("../herosImg/kp13.jpg"),
           chineseName: "万磁王",
           englishName: "MAGNETO",
           heroId: 5,
@@ -61,7 +64,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          // backgroundImg: require("../herosImg/kp21.jpg"),
+          backgroundImg: require("../herosImg/kp21.jpg"),
           chineseName: "满大人",
           englishName: "MANDARIN",
           heroId: 6,
@@ -69,7 +72,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          // backgroundImg: require("../herosImg/kp22.jpg"),
+          backgroundImg: require("../herosImg/kp22.jpg"),
           chineseName: "猎鹰",
           englishName: "FALCON",
           heroId: 7,
@@ -77,7 +80,7 @@ class App extends React.Component {
           collect: false
         },
         {
-          // backgroundImg: require("../herosImg/kp23.jpg"),
+          backgroundImg: require("../herosImg/kp23.jpg"),
           chineseName: "X-教授",
           englishName: "PROFESSOR-X",
           heroId: 8,
@@ -87,31 +90,22 @@ class App extends React.Component {
       ]
     };
   }
-  // collect the hero
-  handleCollect(id) {
-    // Assigning a value to a variable
-    let object = this.state.heroArr;
-    // Traversing the array
-    for (const item of object) {
-      // Modifying variables
-      item.collect = item.heroId === id ? !item.collect : item.collect;
-    }
-    // use the setState method
-    this.setState({ heroArr: object });
-  }
+
+  // handleNum() {
+  //   this.setState({
+  //     num: 1
+  //   });
+  // }
   render() {
     return (
       <Router>
-        <button className="colBtns" onClick={this.handleCollect.bind(this, 0)}>
-          "收藏"
-        </button>
         {/* header */}
         <header>
           <nav>
-            <Link to="/">
-              {/* <img src={require("../herosImg/logo.jpg")} alt="MARVEL" /> */}
+            <Link to="/heroList">
+              <img src={require("../herosImg/logo.jpg")} alt="MARVEL" />
             </Link>
-            <Link to="/">首页</Link>
+            <Link to="/heroList">首页</Link>
             {this.state.heroArr.map(item => {
               return (
                 <Link to={`/hero/${item.heroId}`} key={item.heroId}>
@@ -123,47 +117,16 @@ class App extends React.Component {
         </header>
 
         {/* section */}
-        <div className="charactor-bg">
-          <div className="charactor-out">
-            {this.state.heroArr.map(item => {
-              return (
-                <div
-                  key={item.heroId}
-                  className="charactor"
-                  style={{
-                    background: `url(${item.backgroundImg}) no-repeat center`
-                  }}
-                >
-                  <div />
-                  <ul>
-                    <li className="chineseName">
-                      <span>{item.chineseName}</span>
-                    </li>
-                    <li className="englishName">
-                      <span>{item.englishName}</span>
-                    </li>
-                    <li>
-                      <Link to={`/hero/${item.heroId}`} className="toArchives">
-                        <span>档案</span>
-                      </Link>
-                    </li>
-                  </ul>
-                  <p className="operation">
-                    <span className="time">{changeTime(item.time)}</span>
-                    <button
-                      className="colBtn"
-                      onClick={this.handleCollect.bind(this, item.heroId)}
-                    >
-                      {item.collect ? "取消收藏" : "收藏"}
-                    </button>
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+        <div>
+          <Route path="/heroList" component={HeroList} />
+          <Route path="/hero/:id" component={Hero} />
         </div>
+
         {/* footer */}
         <footer>
+          {/* <button className="colBtns" onClick={this.handleNum.bind(this, 0)}>
+            "收藏"
+          </button> */}
           <p className="footerDiv">漫威粉丝网站由时光网呈现</p>
           <p>
             Copyright © 2006-2015 Mtime.com Inc. All rights reserved.
