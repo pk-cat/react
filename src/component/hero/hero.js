@@ -1,6 +1,7 @@
 import React from "react";
 // css
 import "./hero.less";
+import axios from "axios";
 class Hero extends React.Component {
   constructor(props) {
     super(props);
@@ -57,15 +58,10 @@ class Hero extends React.Component {
     // Route parameters received----heroId
     let heroNum = this.props.match.params.id;
     // get hero's profile
-    fetch("../hero.json", {
-      // use the get method
-      method: "GET"
-    })
+    axios
+      .get("../hero.json")
       .then(res => {
-        // use fetch json method
-        return res.json();
-      })
-      .then(data => {
+        let data = res.data;
         // use the setState method
         this.setState({
           // Information about the current hero
@@ -88,6 +84,38 @@ class Hero extends React.Component {
         // output the error message
         console.log(error);
       });
+    // // get hero's profile
+    // fetch("../hero.json", {
+    //   // use the get method
+    //   method: "GET"
+    // })
+    //   .then(res => {
+    //     // use fetch json method
+    //     return res.json();
+    //   })
+    //   .then(data => {
+    //     // use the setState method
+    //     this.setState({
+    //       // Information about the current hero
+    //       heroesList: data[heroNum],
+    //       // the current banner background
+    //       bannerBgImg: require(`../../herosImg/${
+    //         data[heroNum].bannerBgImgSrc
+    //       }.jpg`),
+    //       // the current banner
+    //       bannerImg: require(`../../herosImg/${
+    //         data[heroNum].bannerImgSrc
+    //       }.jpg`),
+    //       // the current banner icon
+    //       iconImg: this.state.iconImg[heroNum].iconImage
+    //     });
+    //     //
+    //   })
+    //   // If there is an error
+    //   .catch(error => {
+    //     // output the error message
+    //     console.log(error);
+    //   });
   }
   render() {
     return (
